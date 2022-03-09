@@ -125,22 +125,22 @@ while True:
                         buy_result = upbit.buy_market_order("KRW-BTC", krw*(1/target_percent/200))
                         post_message(myToken,"#crypto", "BTC buy : " +str(buy_result))
 
-        if start_time < now < end_time - datetime.timedelta(seconds=10) and current_priceE > open_priceE*0.95 :
-            target_priceE = get_target_priceE("KRW-ETH", 0.5)
-            ma5E = get_ma5E("KRW-ETH")
-            target_percentE = get_target_percentE("KRW-ETH")
-            current_priceE = get_current_priceE("KRW-ETH")  
-            if target_priceE < current_priceE and ma5E < current_priceE:
-                krw = get_balance("KRW")
-                eth = get_balance("ETH")
-                if target_percentE  <= 0.01:
-                    if eth < 0.0001:
-                        buy_result = upbit.buy_market_order("KRW-ETH", krw*(0.49))
-                        post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))
-                elif 0.01 < target_percentE:
-                    if eth < 0.0001:
-                        buy_result = upbit.buy_market_order("KRW-ETH", krw*(1/target_percentE/200))
-                        post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))                  
+            if start_time < now < end_time - datetime.timedelta(seconds=10) and current_priceE > open_priceE*0.95 :
+                target_priceE = get_target_priceE("KRW-ETH", 0.5)
+                ma5E = get_ma5E("KRW-ETH")
+                target_percentE = get_target_percentE("KRW-ETH")
+                current_priceE = get_current_priceE("KRW-ETH")  
+                if target_priceE < current_priceE and ma5E < current_priceE:
+                    krw = get_balance("KRW")
+                    eth = get_balance("ETH")
+                    if target_percentE  <= 0.01:
+                        if eth < 0.0001:
+                            buy_result = upbit.buy_market_order("KRW-ETH", krw*(0.5))
+                            post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))
+                    elif 0.01 < target_percentE:
+                        if eth < 0.0001:
+                            buy_result = upbit.buy_market_order("KRW-ETH", krw*(1/target_percentE/150))
+                            post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))                  
                  
 
         else:
