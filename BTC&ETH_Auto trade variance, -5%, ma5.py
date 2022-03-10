@@ -139,8 +139,15 @@ while True:
                             post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))
                     elif 0.01 < target_percentE:
                         if eth < 0.0001:
-                            buy_result = upbit.buy_market_order("KRW-ETH", krw*(1/target_percentE/150))
-                            post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))                  
+                            buy_result = upbit.buy_market_order("KRW-ETH", krw*(1/target_percentE/200))
+                            post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))
+
+            else:               
+                eth = get_balance("ETH")
+                if eth > 0.00001:
+                    sell_result = upbit.sell_market_order("KRW-ETH", eth*0.9995)
+                    post_message(myToken,"#crypto", "ETH buy : " +str(sell_result))
+                                 
                  
 
         else:
