@@ -200,13 +200,13 @@ while True:
             if target_price < current_price and ma5 < current_price:
                 krw = get_balance("KRW")
                 btc = get_balance("BTC")
-                if target_percent  <= 0.01:
+                if target_percent  <= 0.015:
                     if btc < 0.0001:
-                        buy_result = upbit.buy_market_order("KRW-BTC", krw*(0.5))
+                        buy_result = upbit.buy_market_order("KRW-BTC", krw*(0.6))
                         post_message(myToken,"#crypto", "BTC buy : " +str(buy_result))
-                elif 0.01 < target_percent:
+                elif 0.015 < target_percent:
                     if btc < 0.0001:
-                        buy_result = upbit.buy_market_order("KRW-BTC", krw*(1/target_percent/200))
+                        buy_result = upbit.buy_market_order("KRW-BTC", krw*(1/target_percent/150))
                         post_message(myToken,"#crypto", "BTC buy : " +str(buy_result))
 
         else:
@@ -224,13 +224,13 @@ while True:
             if target_priceE < current_priceE and ma5E < current_priceE:
                 krw = get_balance("KRW")
                 eth = get_balance("ETH")
-                if target_percentE  <= 0.01:
+                if target_percentE  <= 0.015:
                     if eth < 0.0005:
-                        buy_result = upbit.buy_market_order("KRW-ETH", krw*(0.5))
+                        buy_result = upbit.buy_market_order("KRW-ETH", krw*(0.6))
                         post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))
-                elif 0.01 < target_percentE:
+                elif 0.015 < target_percentE:
                     if eth < 0.0005:
-                        buy_result = upbit.buy_market_order("KRW-ETH", krw*(1/target_percentE/200))
+                        buy_result = upbit.buy_market_order("KRW-ETH", krw*(1/target_percentE/150))
                         post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))
 
         else:               
@@ -248,13 +248,13 @@ while True:
             if target_priceX < current_priceX and ma5X < current_priceX and ma10X < current_priceX:
                 krw = get_balance("KRW")
                 xrp = get_balance("XRP")
-                if target_percentX  <= 0.01:
+                if target_percentX  <= 0.015:
                     if xrp < 0.01:
-                        buy_result = upbit.buy_market_order("KRW-XRP", krw*(0.33))
+                        buy_result = upbit.buy_market_order("KRW-XRP", krw*(0.5))
                         post_message(myToken,"#crypto", "XRP buy : " +str(buy_result))
-                elif 0.01 < target_percentX:
+                elif 0.015 < target_percentX:
                     if xrp < 0.01:
-                        buy_result = upbit.buy_market_order("KRW-XRP", krw*(1/target_percentE/300))
+                        buy_result = upbit.buy_market_order("KRW-XRP", krw*(1/target_percentE/200))
                         post_message(myToken,"#crypto", "XRP buy : " +str(buy_result))
 
         else:               
@@ -272,13 +272,13 @@ while True:
             if target_priceA < current_priceA and ma5A < current_priceA and ma10A < current_priceA:
                 krw = get_balance("KRW")
                 ada = get_balance("ADA")
-                if target_percentA  <= 0.01:
+                if target_percentA  <= 0.015:
                     if ada < 0.01:
-                        buy_result = upbit.buy_market_order("KRW-ADA", krw*(0.33))
+                        buy_result = upbit.buy_market_order("KRW-ADA", krw*(0.5))
                         post_message(myToken,"#crypto", "ADA buy : " +str(buy_result))
-                elif 0.01 < target_percentA:
+                elif 0.015 < target_percentA:
                     if ada < 0.01:
-                        buy_result = upbit.buy_market_order("KRW-ADA", krw*(1/target_percentA/300))
+                        buy_result = upbit.buy_market_order("KRW-ADA", krw*(1/target_percentA/200))
                         post_message(myToken,"#crypto", "ADA buy : " +str(buy_result))
 
         else:               
