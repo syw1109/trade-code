@@ -19,7 +19,7 @@ def get_target_price(ticker, k):
     """ohlcv : 주식의 종가,시가, 최고,최저 정보 불러오는 함수"""
     """iloc : 인덱스 함수 [1]이 오늘, [0]은 어제"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    target_price = df.iloc[1]['open'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
+    target_price = df.iloc[0]['close'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
     return target_price
 
 def get_target_priceE(ticker, k):
@@ -27,7 +27,7 @@ def get_target_priceE(ticker, k):
     """ohlcv : 주식의 종가,시가, 최고,최저 정보 불러오는 함수"""
     """iloc : 인덱스 함수 [1]이 오늘, [0]은 어제"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    target_priceE = df.iloc[1]['open'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
+    target_priceE = df.iloc[0]['close'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
     return target_priceE
 
 def get_target_priceX(ticker, k):
@@ -35,7 +35,7 @@ def get_target_priceX(ticker, k):
     """ohlcv : 주식의 종가,시가, 최고,최저 정보 불러오는 함수"""
     """iloc : 인덱스 함수 [1]이 오늘, [0]은 어제"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    target_priceX = df.iloc[1]['open'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
+    target_priceX = df.iloc[0]['close'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
     return target_priceX
 
 def get_target_priceA(ticker, k):
@@ -43,32 +43,60 @@ def get_target_priceA(ticker, k):
     """ohlcv : 주식의 종가,시가, 최고,최저 정보 불러오는 함수"""
     """iloc : 인덱스 함수 [1]이 오늘, [0]은 어제"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    target_priceA = df.iloc[1]['open'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
-    return target_priceA        
+    target_priceA = df.iloc[0]['close'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
+    return target_priceA     
+
+def get_target_priceEC(ticker, k):
+    """변동성 돌파 전략으로 매수 목표가 조회"""
+    """ohlcv : 주식의 종가,시가, 최고,최저 정보 불러오는 함수"""
+    """iloc : 인덱스 함수 [1]이 오늘, [0]은 어제"""
+    df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
+    target_priceEC = df.iloc[0]['close'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
+    return target_priceEC       
+
+def get_target_priceL(ticker, k):
+    """변동성 돌파 전략으로 매수 목표가 조회"""
+    """ohlcv : 주식의 종가,시가, 최고,최저 정보 불러오는 함수"""
+    """iloc : 인덱스 함수 [1]이 오늘, [0]은 어제"""
+    df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
+    target_priceL = df.iloc[0]['close'] + (df.iloc[0]['high'] - df.iloc[0]['low']) * k
+    return target_priceL            
   
 def get_open_price(ticker):
     """변동성 돌파 전략으로 매수 목표가 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    open_price = df.iloc[1]['open']
+    open_price = df.iloc[0]['close']
     return open_price  
 
 def get_open_priceE(ticker):
     """변동성 돌파 전략으로 매수 목표가 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    open_priceE = df.iloc[1]['open']
+    open_priceE = df.iloc[0]['close']
     return open_priceE   
 
 def get_open_priceX(ticker):
     """변동성 돌파 전략으로 매수 목표가 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    open_priceX = df.iloc[1]['open']
+    open_priceX = df.iloc[0]['close']
     return open_priceX  
 
 def get_open_priceA(ticker):
     """변동성 돌파 전략으로 매수 목표가 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
-    open_priceA = df.iloc[1]['open']
-    return open_priceA            
+    open_priceA = df.iloc[0]['close']
+    return open_priceA     
+
+def get_open_priceEC(ticker):
+    """변동성 돌파 전략으로 매수 목표가 조회"""
+    df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
+    open_priceEC = df.iloc[0]['close']
+    return open_priceEC
+
+def get_open_priceL(ticker):
+    """변동성 돌파 전략으로 매수 목표가 조회"""
+    df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
+    open_priceL = df.iloc[0]['close']
+    return open_priceL                 
 
 def get_target_percent(ticker):
     """변동성 돌파 전략에 전날 변동성 계산"""
@@ -92,7 +120,19 @@ def get_target_percentA(ticker):
     """변동성 돌파 전략에 전날 변동성 계산"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
     target_percentA = (df.iloc[0]['high'] - df.iloc[0]['low'])/df.iloc[0]['close'] 
-    return target_percentA                
+    return target_percentA 
+
+def get_target_percentEC(ticker):
+    """변동성 돌파 전략에 전날 변동성 계산"""
+    df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
+    target_percentEC = (df.iloc[0]['high'] - df.iloc[0]['low'])/df.iloc[0]['close'] 
+    return target_percentEC   
+
+def get_target_percentL(ticker):
+    """변동성 돌파 전략에 전날 변동성 계산"""
+    df = pyupbit.get_ohlcv(ticker, interval="day", count=2)
+    target_percentL = (df.iloc[0]['high'] - df.iloc[0]['low'])/df.iloc[0]['close'] 
+    return target_percentL                       
 
 def get_start_time(ticker):
     """시작 시간 조회"""
@@ -140,7 +180,31 @@ def get_ma10A(ticker):
     """10일 이동 평균선 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=10)
     ma10A = df['close'].rolling(10).mean().iloc[-1]
-    return ma10A              
+    return ma10A 
+
+def get_ma5EC(ticker):
+    """5일 이동 평균선 조회"""
+    df = pyupbit.get_ohlcv(ticker, interval="day", count=5)
+    ma5EC = df['close'].rolling(5).mean().iloc[-1]
+    return ma5EC  
+
+def get_ma10EC(ticker):
+    """10일 이동 평균선 조회"""
+    df = pyupbit.get_ohlcv(ticker, interval="day", count=10)
+    ma10EC = df['close'].rolling(10).mean().iloc[-1]
+    return ma10EC
+
+def get_ma5L(ticker):
+    """5일 이동 평균선 조회"""
+    df = pyupbit.get_ohlcv(ticker, interval="day", count=5)
+    ma5L = df['close'].rolling(5).mean().iloc[-1]
+    return ma5L  
+
+def get_ma10L(ticker):
+    """10일 이동 평균선 조회"""
+    df = pyupbit.get_ohlcv(ticker, interval="day", count=10)
+    ma10L = df['close'].rolling(10).mean().iloc[-1]
+    return ma10L                       
 
 def get_balance(ticker):
     """잔고 조회"""
@@ -167,7 +231,15 @@ def get_current_priceX(ticker):
 
 def get_current_priceA(ticker):
     """현재가 조회"""
-    return pyupbit.get_orderbook(ticker=ticker)["orderbook_units"][0]["ask_price"]            
+    return pyupbit.get_orderbook(ticker=ticker)["orderbook_units"][0]["ask_price"] 
+
+def get_current_priceEC(ticker):
+    """현재가 조회"""
+    return pyupbit.get_orderbook(ticker=ticker)["orderbook_units"][0]["ask_price"] 
+
+def get_current_priceL(ticker):
+    """현재가 조회"""
+    return pyupbit.get_orderbook(ticker=ticker)["orderbook_units"][0]["ask_price"]                          
 
 # 로그인
 upbit = pyupbit.Upbit(access, secret)
@@ -189,6 +261,10 @@ while True:
         current_priceX = get_current_priceE("KRW-XRP")  
         open_priceA = get_open_priceE("KRW-ADA")
         current_priceA = get_current_priceE("KRW-ADA")  
+        open_priceEC = get_open_priceEC("KRW-ETC")
+        current_priceEC = get_current_priceEC("KRW-ETC")
+        open_priceL = get_open_priceL("KRW-AVAX")
+        current_priceL = get_current_priceL("KRW-AVAX")  
 
 
 
@@ -197,7 +273,7 @@ while True:
             ma5 = get_ma5("KRW-BTC")
             target_percent = get_target_percent("KRW-BTC")
             current_price = get_current_price("KRW-BTC")  
-            if target_price < current_price and ma5 < current_price:
+            if target_price <= current_price and ma5 <= current_price:
                 krw = get_balance("KRW")
                 btc = get_balance("BTC")
                 if target_percent  <= 0.015:
@@ -206,7 +282,7 @@ while True:
                         post_message(myToken,"#crypto", "BTC buy : " +str(buy_result))
                 elif 0.015 < target_percent:
                     if btc < 0.0001:
-                        buy_result = upbit.buy_market_order("KRW-BTC", krw*(1/target_percent/150))
+                        buy_result = upbit.buy_market_order("KRW-BTC", krw*(1/target_percent/100))
                         post_message(myToken,"#crypto", "BTC buy : " +str(buy_result))
 
         else:
@@ -221,7 +297,7 @@ while True:
             ma5E = get_ma5E("KRW-ETH")
             target_percentE = get_target_percentE("KRW-ETH")
             current_priceE = get_current_priceE("KRW-ETH")  
-            if target_priceE < current_priceE and ma5E < current_priceE:
+            if target_priceE <= current_priceE and ma5E <= current_priceE:
                 krw = get_balance("KRW")
                 eth = get_balance("ETH")
                 if target_percentE  <= 0.015:
@@ -230,7 +306,7 @@ while True:
                         post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))
                 elif 0.015 < target_percentE:
                     if eth < 0.0005:
-                        buy_result = upbit.buy_market_order("KRW-ETH", krw*(1/target_percentE/150))
+                        buy_result = upbit.buy_market_order("KRW-ETH", krw*(1/target_percentE/120))
                         post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))
 
         else:               
@@ -239,13 +315,13 @@ while True:
                 sell_result = upbit.sell_market_order("KRW-ETH", eth)
                 post_message(myToken,"#crypto", "ETH buy : " +str(sell_result))                             
                                  
-        if start_time < now < end_time - datetime.timedelta(seconds=10) and current_priceX > open_priceX*0.93 :
+        if start_time < now < end_time - datetime.timedelta(seconds=10) and current_priceX > open_priceX*0.95 :
             target_priceX = get_target_priceX("KRW-XRP", 0.5)
             ma5X = get_ma5X("KRW-XRP")
             ma10X = get_ma10X("KRW-XRP")
             target_percentX = get_target_percentX("KRW-XRP")
             current_priceX = get_current_priceX("KRW-XRP")  
-            if target_priceX < current_priceX and ma5X < current_priceX and ma10X < current_priceX:
+            if target_priceX <= current_priceX and ma5X <= current_priceX and ma10X <= current_priceX:
                 krw = get_balance("KRW")
                 xrp = get_balance("XRP")
                 if target_percentX  <= 0.015:
@@ -254,7 +330,7 @@ while True:
                         post_message(myToken,"#crypto", "XRP buy : " +str(buy_result))
                 elif 0.015 < target_percentX:
                     if xrp < 0.01:
-                        buy_result = upbit.buy_market_order("KRW-XRP", krw*(1/target_percentE/200))
+                        buy_result = upbit.buy_market_order("KRW-XRP", krw*(1/target_percentE/130))
                         post_message(myToken,"#crypto", "XRP buy : " +str(buy_result))
 
         else:               
@@ -263,13 +339,13 @@ while True:
                 sell_result = upbit.sell_market_order("KRW-XRP", xrp)
                 post_message(myToken,"#crypto", "XRP buy : " +str(sell_result))  
 
-        if start_time < now < end_time - datetime.timedelta(seconds=10) and current_priceA > open_priceA*0.92 :
+        if start_time < now < end_time - datetime.timedelta(seconds=10) and current_priceA > open_priceA*0.95 :
             target_priceA = get_target_priceA("KRW-ADA", 0.5)
             ma5A = get_ma5A("KRW-ADA")
             ma10A = get_ma10A("KRW-ADA")
             target_percentA = get_target_percentA("KRW-ADA")
             current_priceA = get_current_priceA("KRW-ADA")  
-            if target_priceA < current_priceA and ma5A < current_priceA and ma10A < current_priceA:
+            if target_priceA <= current_priceA and ma5A <= current_priceA and ma10A <= current_priceA:
                 krw = get_balance("KRW")
                 ada = get_balance("ADA")
                 if target_percentA  <= 0.015:
@@ -278,7 +354,7 @@ while True:
                         post_message(myToken,"#crypto", "ADA buy : " +str(buy_result))
                 elif 0.015 < target_percentA:
                     if ada < 0.01:
-                        buy_result = upbit.buy_market_order("KRW-ADA", krw*(1/target_percentA/200))
+                        buy_result = upbit.buy_market_order("KRW-ADA", krw*(1/target_percentA/150))
                         post_message(myToken,"#crypto", "ADA buy : " +str(buy_result))
 
         else:               
@@ -286,6 +362,54 @@ while True:
             if ada > 0.001:
                 sell_result = upbit.sell_market_order("KRW-ADA", ada)
                 post_message(myToken,"#crypto", "ADA buy : " +str(sell_result))                                    
+
+        if start_time < now < end_time - datetime.timedelta(seconds=10) and current_priceEC > open_priceEC*0.95 :
+            target_priceEC = get_target_priceEC("KRW-ETC", 0.5)
+            ma5EC = get_ma5EC("KRW-ETC")
+            ma10EC = get_ma10EC("KRW-ETC")
+            target_percentEC = get_target_percentEC("KRW-ETC")
+            current_priceEC = get_current_priceEC("KRW-ETC")  
+            if target_priceEC <= current_priceEC and ma5EC <= current_priceEC and ma10EC <= current_priceEC:
+                krw = get_balance("KRW")
+                etc = get_balance("ETC")
+                if target_percentA  <= 0.015:
+                    if etc < 0.01:
+                        buy_result = upbit.buy_market_order("KRW-ETC", krw*(0.4))
+                        post_message(myToken,"#crypto", "ETC buy : " +str(buy_result))
+                elif 0.015 < target_percentA:
+                    if etc < 0.01:
+                        buy_result = upbit.buy_market_order("KRW-ETC", krw*(1/target_percentEC/200))
+                        post_message(myToken,"#crypto", "ETC buy : " +str(buy_result))
+
+        else:               
+            etc = get_balance("ETC")
+            if etc > 0.001:
+                sell_result = upbit.sell_market_order("KRW-ETC", etc)
+                post_message(myToken,"#crypto", "ETC buy : " +str(sell_result))    
+
+        if start_time < now < end_time - datetime.timedelta(seconds=10) and current_priceL > open_priceL*0.95 :
+            target_priceL = get_target_priceL("KRW-AVAX", 0.5)
+            ma5L = get_ma5L("KRW-AVAX")
+            ma10L = get_ma10L("KRW-AVAX")
+            target_percentL = get_target_percentL("KRW-AVAX")
+            current_priceL = get_current_priceL("KRW-AVAX")  
+            if target_priceL <= current_priceL and ma5L <= current_priceL and ma10L <= current_priceL:
+                krw = get_balance("KRW")
+                avax = get_balance("AVAX")
+                if target_percentL  <= 0.015:
+                    if avax < 0.01:
+                        buy_result = upbit.buy_market_order("KRW-AVAX", krw*(0.4))
+                        post_message(myToken,"#crypto", "AVAX buy : " +str(buy_result))
+                elif 0.015 < target_percentA:
+                    if avax < 0.01:
+                        buy_result = upbit.buy_market_order("KRW-AVAX", krw*(1/target_percentL/200))
+                        post_message(myToken,"#crypto", "AVAX buy : " +str(buy_result))
+
+        else:               
+            avax = get_balance("AVAX")
+            if avax > 0.001:
+                sell_result = upbit.sell_market_order("KRW-AVAX", avax)
+                post_message(myToken,"#crypto", "AVAX buy : " +str(sell_result))   
 
 
 
