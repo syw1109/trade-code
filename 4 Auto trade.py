@@ -263,8 +263,8 @@ while True:
         current_priceA = get_current_priceE("KRW-ADA")  
         open_priceEC = get_open_priceEC("KRW-ETC")
         current_priceEC = get_current_priceEC("KRW-ETC")
-        open_priceL = get_open_priceL("KRW-AVAX")
-        current_priceL = get_current_priceL("KRW-AVAX")  
+        open_priceL = get_open_priceL("KRW-SOL")
+        current_priceL = get_current_priceL("KRW-SOL")  
 
 
 
@@ -306,7 +306,7 @@ while True:
                         post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))
                 elif 0.015 < target_percentE:
                     if eth < 0.0005:
-                        buy_result = upbit.buy_market_order("KRW-ETH", krw*(1/target_percentE/120))
+                        buy_result = upbit.buy_market_order("KRW-ETH", krw*(1/target_percentE/110))
                         post_message(myToken,"#crypto", "ETH buy : " +str(buy_result))
 
         else:               
@@ -354,7 +354,7 @@ while True:
                         post_message(myToken,"#crypto", "ADA buy : " +str(buy_result))
                 elif 0.015 < target_percentA:
                     if ada < 0.01:
-                        buy_result = upbit.buy_market_order("KRW-ADA", krw*(1/target_percentA/150))
+                        buy_result = upbit.buy_market_order("KRW-ADA", krw*(1/target_percentA/130))
                         post_message(myToken,"#crypto", "ADA buy : " +str(buy_result))
 
         else:               
@@ -378,7 +378,7 @@ while True:
                         post_message(myToken,"#crypto", "ETC buy : " +str(buy_result))
                 elif 0.015 < target_percentA:
                     if etc < 0.01:
-                        buy_result = upbit.buy_market_order("KRW-ETC", krw*(1/target_percentEC/200))
+                        buy_result = upbit.buy_market_order("KRW-ETC", krw*(1/target_percentEC/150))
                         post_message(myToken,"#crypto", "ETC buy : " +str(buy_result))
 
         else:               
@@ -388,28 +388,28 @@ while True:
                 post_message(myToken,"#crypto", "ETC buy : " +str(sell_result))    
 
         if start_time < now < end_time - datetime.timedelta(seconds=10) and current_priceL > open_priceL*0.95 :
-            target_priceL = get_target_priceL("KRW-AVAX", 0.5)
-            ma5L = get_ma5L("KRW-AVAX")
-            ma10L = get_ma10L("KRW-AVAX")
-            target_percentL = get_target_percentL("KRW-AVAX")
-            current_priceL = get_current_priceL("KRW-AVAX")  
+            target_priceL = get_target_priceL("KRW-SOL", 0.5)
+            ma5L = get_ma5L("KRW-SOL")
+            ma10L = get_ma10L("KRW-SOL")
+            target_percentL = get_target_percentL("KRW-SOL")
+            current_priceL = get_current_priceL("KRW-SOL")  
             if target_priceL <= current_priceL and ma5L <= current_priceL and ma10L <= current_priceL:
                 krw = get_balance("KRW")
-                avax = get_balance("AVAX")
+                sol = get_balance("SOL")
                 if target_percentL  <= 0.015:
-                    if avax < 0.01:
-                        buy_result = upbit.buy_market_order("KRW-AVAX", krw*(0.4))
-                        post_message(myToken,"#crypto", "AVAX buy : " +str(buy_result))
+                    if sol < 0.01:
+                        buy_result = upbit.buy_market_order("KRW-SOL", krw*(0.4))
+                        post_message(myToken,"#crypto", "SOL buy : " +str(buy_result))
                 elif 0.015 < target_percentA:
-                    if avax < 0.01:
-                        buy_result = upbit.buy_market_order("KRW-AVAX", krw*(1/target_percentL/200))
-                        post_message(myToken,"#crypto", "AVAX buy : " +str(buy_result))
+                    if sol < 0.01:
+                        buy_result = upbit.buy_market_order("KRW-SOL", krw*(1/target_percentL/150))
+                        post_message(myToken,"#crypto", "SOL buy : " +str(buy_result))
 
         else:               
-            avax = get_balance("AVAX")
-            if avax > 0.001:
-                sell_result = upbit.sell_market_order("KRW-AVAX", avax)
-                post_message(myToken,"#crypto", "AVAX buy : " +str(sell_result))   
+            sol = get_balance("SOL")
+            if sol > 0.001:
+                sell_result = upbit.sell_market_order("KRW-SOL", sol)
+                post_message(myToken,"#crypto", "SOL buy : " +str(sell_result))   
 
 
 
