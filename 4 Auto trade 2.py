@@ -222,7 +222,13 @@ def get_ma10L(ticker):
     """10일 이동 평균선 조회"""
     df = pyupbit.get_ohlcv(ticker, interval="day", count=10)
     ma10L = df['close'].rolling(10).mean().iloc[-1]
-    return ma10L                       
+    return ma10L  
+
+def get_ma20L(ticker):
+    """20일 이동 평균선 조회"""
+    df = pyupbit.get_ohlcv(ticker, interval="day", count=20)
+    ma20L = df['close'].rolling(20).mean().iloc[-1]
+    return ma20L                           
 
 def get_balance(ticker):
     """잔고 조회"""
@@ -315,6 +321,7 @@ while True:
         target_priceL = get_target_priceL("KRW-SOL", 0.5)
         ma5L = get_ma5L("KRW-SOL")
         ma10L = get_ma10L("KRW-SOL")
+        ma20L = get_ma20L("KRW-SOL")
         target_percentL = get_target_percentL("KRW-SOL")
 
 
@@ -418,7 +425,7 @@ while True:
                 post_message(myToken,"#crypto", "ETC buy : " +str(sell_result))    
 
         if start_time < now < end_time - datetime.timedelta(minutes=10) and current_priceL > target_priceL*0.95 :
-            if target_priceL < current_priceL and ma5L < current_priceL and ma10L < current_priceL:
+            if target_priceL < current_priceL and ma20L < current_priceL:
                 krw = get_balance("KRW")
                 sol = get_balance("SOL")
                 if target_percentL  <= 0.015:
